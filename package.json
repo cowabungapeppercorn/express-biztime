@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "psql < data-test.sql && NODE_ENV=test jest",
     "start": "node server.js"
   },
   "keywords": [],
@@ -13,5 +13,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "supertest": "^4.0.2"
   }
 }

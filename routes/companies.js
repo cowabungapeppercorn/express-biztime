@@ -75,7 +75,7 @@ router.put("/:code", async function (req, res, next) {
          RETURNING code, name, description`, [name, description, req.params.code]
     );
 
-    if (!(results.rows[0].hasOwnProperty("code"))) {
+    if (!results.rows.length) {
       throw new ExpressError(`company cannot be found`, 404);
     }
 
@@ -94,7 +94,8 @@ router.delete("/:code", async function (req, res, next) {
 
     const results = await db.query(
       `DELETE FROM companies 
-         WHERE code=$1`, [req.params.code]
+        WHERE code=$1
+        RETURNING code`, [req.params.code]
     );
 
     if ((results.rows.length === 0)) {
