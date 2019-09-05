@@ -26,8 +26,8 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
 
   return res.json({
-    error: err,
-    message: err.message
+    error: err
+    // message: err.message
   });
 });
 
