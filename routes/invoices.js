@@ -90,7 +90,8 @@ router.delete("/:id", async function (req, res, next) {
 
     const results = await db.query(
       `DELETE FROM invoices 
-         WHERE id=$1`, [req.params.id]
+         WHERE id=$1
+         RETURNING id`, [req.params.id]
     );
 
     if (!results.rows.length) {
